@@ -25,6 +25,7 @@ public class CandidateController {
             var result = this.createCandidateUseCase.execute(candidateEntity);
             return ResponseEntity.ok(result);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
