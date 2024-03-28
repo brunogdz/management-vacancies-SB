@@ -12,12 +12,19 @@ public class CreateCandidateUseCase {
     @Autowired
     private CandidateRepository candidateRepository;
 
+    @Autowired
+    private org.springframework.security.crypto.password.PasswordEncoder PasswordEncoder;
+
     public CandidateEntity execute(CandidateEntity candidateEntity) {
         this.candidateRepository
                 .findByUsernameOrEmail(candidateEntity.getUsername(), candidateEntity.getEmail())
                 .ifPresent((user) -> {
                     throw new UserFoundException();
                 });
+
+        var password = PasswordEncoder.encode(candidateEntity.getPassword());
+        candidateEntity.setPassword(password);
+
 
 
         return this.candidateRepository.save(candidateEntity);
