@@ -11,14 +11,14 @@ import com.brunogdev.gestao_vagas.modules.company.dto.AuthCompanyDTO;
 import com.brunogdev.gestao_vagas.modules.company.userCases.AuthCompanyUseCase;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/company")
 public class AuthCompanyControlle {
 
     @Autowired
     private AuthCompanyUseCase authCompanyUseCase;
 
 
-    @PostMapping("/company")
+    @PostMapping("/auth")
     public ResponseEntity<Object> create(@RequestBody AuthCompanyDTO authCompanyDTO) {
         try {
 
